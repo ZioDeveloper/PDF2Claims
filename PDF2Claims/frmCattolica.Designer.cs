@@ -29,31 +29,42 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmdClear = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.lblPDF = new System.Windows.Forms.Label();
             this.cmdOpenPDF = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtDataEvento = new System.Windows.Forms.TextBox();
+            this.txtDataIncarico = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtPL = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPerito = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtDescrAccadimento = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtLuogoAccadimento = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtGaranzia = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtRamo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSinistro = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtDataIncarico = new System.Windows.Forms.TextBox();
-            this.txtDataEvento = new System.Windows.Forms.TextBox();
-            this.txtGaranzia = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtLuogoAccadimento = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtDescrAccadimento = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtDataEffettoPolizza = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtPolizza = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtAgenzia = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtPIVA = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtAssicuratoInd = new System.Windows.Forms.TextBox();
@@ -64,10 +75,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtContraente = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtAgenzia = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtPolizza = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtStima = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -77,32 +84,32 @@
             this.label22 = new System.Windows.Forms.Label();
             this.txtDanneggiato = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtDataEffettoPolizza = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label18 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtEnte = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtAutorita = new System.Windows.Forms.TextBox();
             this.txtVerbale = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.txtAutorita = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtEnte = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.cmdExit = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
             this.cmdInsert = new System.Windows.Forms.Button();
+            this.cmdExit = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmdClear);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.lblPDF);
@@ -114,6 +121,38 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestione files";
+            // 
+            // cmdClear
+            // 
+            this.cmdClear.Location = new System.Drawing.Point(236, 17);
+            this.cmdClear.Name = "cmdClear";
+            this.cmdClear.Size = new System.Drawing.Size(75, 23);
+            this.cmdClear.TabIndex = 21;
+            this.cmdClear.Text = "Clear";
+            this.cmdClear.UseVisualStyleBackColor = true;
+            this.cmdClear.Click += new System.EventHandler(this.cmdClear_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.AllowDrop = true;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.label18);
+            this.panel1.Location = new System.Drawing.Point(403, 11);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(491, 54);
+            this.panel1.TabIndex = 20;
+            this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel1_DragDrop);
+            this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel1_DragEnter);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(147, 20);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(212, 25);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Drag && Drop PDF file";
             // 
             // button1
             // 
@@ -170,6 +209,38 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Intestazione:";
             // 
+            // txtDataEvento
+            // 
+            this.txtDataEvento.Location = new System.Drawing.Point(657, 30);
+            this.txtDataEvento.Name = "txtDataEvento";
+            this.txtDataEvento.Size = new System.Drawing.Size(76, 20);
+            this.txtDataEvento.TabIndex = 16;
+            // 
+            // txtDataIncarico
+            // 
+            this.txtDataIncarico.Location = new System.Drawing.Point(460, 30);
+            this.txtDataIncarico.Name = "txtDataIncarico";
+            this.txtDataIncarico.Size = new System.Drawing.Size(76, 20);
+            this.txtDataIncarico.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(585, 30);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Data evento";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(369, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Data incarico";
+            // 
             // txtPL
             // 
             this.txtPL.Location = new System.Drawing.Point(272, 30);
@@ -204,6 +275,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label26);
+            this.groupBox3.Controls.Add(this.comboBox1);
             this.groupBox3.Controls.Add(this.txtDescrAccadimento);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.txtLuogoAccadimento);
@@ -216,10 +289,78 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Location = new System.Drawing.Point(28, 168);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(900, 141);
+            this.groupBox3.Size = new System.Drawing.Size(900, 150);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Dati evento:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(565, 29);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(49, 13);
+            this.label26.TabIndex = 22;
+            this.label26.Text = "Gestione";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(624, 26);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(226, 21);
+            this.comboBox1.TabIndex = 21;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // txtDescrAccadimento
+            // 
+            this.txtDescrAccadimento.Location = new System.Drawing.Point(69, 101);
+            this.txtDescrAccadimento.Multiline = true;
+            this.txtDescrAccadimento.Name = "txtDescrAccadimento";
+            this.txtDescrAccadimento.Size = new System.Drawing.Size(467, 43);
+            this.txtDescrAccadimento.TabIndex = 18;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 101);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Descr";
+            // 
+            // txtLuogoAccadimento
+            // 
+            this.txtLuogoAccadimento.Location = new System.Drawing.Point(69, 78);
+            this.txtLuogoAccadimento.Name = "txtLuogoAccadimento";
+            this.txtLuogoAccadimento.Size = new System.Drawing.Size(467, 20);
+            this.txtLuogoAccadimento.TabIndex = 16;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 78);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(37, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Luogo";
+            // 
+            // txtGaranzia
+            // 
+            this.txtGaranzia.Location = new System.Drawing.Point(69, 55);
+            this.txtGaranzia.Name = "txtGaranzia";
+            this.txtGaranzia.Size = new System.Drawing.Size(467, 20);
+            this.txtGaranzia.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 55);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Garanzia";
             // 
             // txtRamo
             // 
@@ -253,86 +394,6 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Sinistro";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(369, 30);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Data incarico";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(585, 30);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(66, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Data evento";
-            // 
-            // txtDataIncarico
-            // 
-            this.txtDataIncarico.Location = new System.Drawing.Point(460, 30);
-            this.txtDataIncarico.Name = "txtDataIncarico";
-            this.txtDataIncarico.Size = new System.Drawing.Size(76, 20);
-            this.txtDataIncarico.TabIndex = 15;
-            // 
-            // txtDataEvento
-            // 
-            this.txtDataEvento.Location = new System.Drawing.Point(657, 30);
-            this.txtDataEvento.Name = "txtDataEvento";
-            this.txtDataEvento.Size = new System.Drawing.Size(76, 20);
-            this.txtDataEvento.TabIndex = 16;
-            // 
-            // txtGaranzia
-            // 
-            this.txtGaranzia.Location = new System.Drawing.Point(69, 55);
-            this.txtGaranzia.Name = "txtGaranzia";
-            this.txtGaranzia.Size = new System.Drawing.Size(467, 20);
-            this.txtGaranzia.TabIndex = 14;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 55);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 13);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Garanzia";
-            // 
-            // txtLuogoAccadimento
-            // 
-            this.txtLuogoAccadimento.Location = new System.Drawing.Point(69, 78);
-            this.txtLuogoAccadimento.Name = "txtLuogoAccadimento";
-            this.txtLuogoAccadimento.Size = new System.Drawing.Size(467, 20);
-            this.txtLuogoAccadimento.TabIndex = 16;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 78);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(37, 13);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Luogo";
-            // 
-            // txtDescrAccadimento
-            // 
-            this.txtDescrAccadimento.Location = new System.Drawing.Point(69, 101);
-            this.txtDescrAccadimento.Name = "txtDescrAccadimento";
-            this.txtDescrAccadimento.Size = new System.Drawing.Size(467, 20);
-            this.txtDescrAccadimento.TabIndex = 18;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 101);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Descr";
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.txtDataEffettoPolizza);
@@ -357,6 +418,54 @@
             this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Dati Polizza:";
+            // 
+            // txtDataEffettoPolizza
+            // 
+            this.txtDataEffettoPolizza.Location = new System.Drawing.Point(568, 118);
+            this.txtDataEffettoPolizza.Name = "txtDataEffettoPolizza";
+            this.txtDataEffettoPolizza.Size = new System.Drawing.Size(76, 20);
+            this.txtDataEffettoPolizza.TabIndex = 17;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(439, 118);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(97, 13);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "Data EffettoPolizza";
+            // 
+            // txtPolizza
+            // 
+            this.txtPolizza.Location = new System.Drawing.Point(69, 118);
+            this.txtPolizza.Name = "txtPolizza";
+            this.txtPolizza.Size = new System.Drawing.Size(180, 20);
+            this.txtPolizza.TabIndex = 22;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(8, 121);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(40, 13);
+            this.label16.TabIndex = 21;
+            this.label16.Text = "Polizza";
+            // 
+            // txtAgenzia
+            // 
+            this.txtAgenzia.Location = new System.Drawing.Point(568, 87);
+            this.txtAgenzia.Name = "txtAgenzia";
+            this.txtAgenzia.Size = new System.Drawing.Size(309, 20);
+            this.txtAgenzia.TabIndex = 20;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(491, 90);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(45, 13);
+            this.label15.TabIndex = 19;
+            this.label15.Text = "Agenzia";
             // 
             // txtPIVA
             // 
@@ -437,38 +546,6 @@
             this.label14.Size = new System.Drawing.Size(59, 13);
             this.label14.TabIndex = 9;
             this.label14.Text = "Contraente";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(491, 90);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(45, 13);
-            this.label15.TabIndex = 19;
-            this.label15.Text = "Agenzia";
-            // 
-            // txtAgenzia
-            // 
-            this.txtAgenzia.Location = new System.Drawing.Point(568, 87);
-            this.txtAgenzia.Name = "txtAgenzia";
-            this.txtAgenzia.Size = new System.Drawing.Size(309, 20);
-            this.txtAgenzia.TabIndex = 20;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(8, 121);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(40, 13);
-            this.label16.TabIndex = 21;
-            this.label16.Text = "Polizza";
-            // 
-            // txtPolizza
-            // 
-            this.txtPolizza.Location = new System.Drawing.Point(69, 118);
-            this.txtPolizza.Name = "txtPolizza";
-            this.txtPolizza.Size = new System.Drawing.Size(180, 20);
-            this.txtPolizza.TabIndex = 22;
             // 
             // groupBox5
             // 
@@ -552,44 +629,6 @@
             this.label23.TabIndex = 9;
             this.label23.Text = "Danneggiato";
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(439, 118);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(97, 13);
-            this.label17.TabIndex = 23;
-            this.label17.Text = "Data EffettoPolizza";
-            // 
-            // txtDataEffettoPolizza
-            // 
-            this.txtDataEffettoPolizza.Location = new System.Drawing.Point(568, 118);
-            this.txtDataEffettoPolizza.Name = "txtDataEffettoPolizza";
-            this.txtDataEffettoPolizza.Size = new System.Drawing.Size(76, 20);
-            this.txtDataEffettoPolizza.TabIndex = 17;
-            // 
-            // panel1
-            // 
-            this.panel1.AllowDrop = true;
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel1.Controls.Add(this.label18);
-            this.panel1.Location = new System.Drawing.Point(403, 11);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(491, 54);
-            this.panel1.TabIndex = 20;
-            this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel1_DragDrop);
-            this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel1_DragEnter);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(180, 15);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(136, 25);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "Drag && Drop ";
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.txtVerbale);
@@ -604,38 +643,6 @@
             this.groupBox6.TabIndex = 24;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Varie";
-            // 
-            // txtEnte
-            // 
-            this.txtEnte.Location = new System.Drawing.Point(58, 63);
-            this.txtEnte.Name = "txtEnte";
-            this.txtEnte.Size = new System.Drawing.Size(348, 20);
-            this.txtEnte.TabIndex = 16;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(17, 66);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(29, 13);
-            this.label19.TabIndex = 15;
-            this.label19.Text = "Ente";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(10, 27);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(43, 13);
-            this.label24.TabIndex = 17;
-            this.label24.Text = "Autorità";
-            // 
-            // txtAutorita
-            // 
-            this.txtAutorita.Location = new System.Drawing.Point(58, 24);
-            this.txtAutorita.Name = "txtAutorita";
-            this.txtAutorita.Size = new System.Drawing.Size(348, 20);
-            this.txtAutorita.TabIndex = 18;
             // 
             // txtVerbale
             // 
@@ -653,8 +660,41 @@
             this.label25.TabIndex = 19;
             this.label25.Text = "Verbale";
             // 
+            // txtAutorita
+            // 
+            this.txtAutorita.Location = new System.Drawing.Point(58, 24);
+            this.txtAutorita.Name = "txtAutorita";
+            this.txtAutorita.Size = new System.Drawing.Size(348, 20);
+            this.txtAutorita.TabIndex = 18;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(10, 27);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(43, 13);
+            this.label24.TabIndex = 17;
+            this.label24.Text = "Autorità";
+            // 
+            // txtEnte
+            // 
+            this.txtEnte.Location = new System.Drawing.Point(58, 63);
+            this.txtEnte.Name = "txtEnte";
+            this.txtEnte.Size = new System.Drawing.Size(348, 20);
+            this.txtEnte.TabIndex = 16;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(17, 66);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(29, 13);
+            this.label19.TabIndex = 15;
+            this.label19.Text = "Ente";
+            // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.panel2);
             this.groupBox7.Controls.Add(this.cmdInsert);
             this.groupBox7.Controls.Add(this.cmdExit);
             this.groupBox7.Location = new System.Drawing.Point(28, 701);
@@ -663,6 +703,40 @@
             this.groupBox7.TabIndex = 25;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Esegui";
+            // 
+            // panel2
+            // 
+            this.panel2.AllowDrop = true;
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel2.Controls.Add(this.label27);
+            this.panel2.Location = new System.Drawing.Point(205, 11);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(491, 54);
+            this.panel2.TabIndex = 21;
+            this.panel2.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel2_DragDrop);
+            this.panel2.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel2_DragEnter);
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(162, 15);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(208, 25);
+            this.label27.TabIndex = 0;
+            this.label27.Text = "Drag && Drop  ZIP file";
+            // 
+            // cmdInsert
+            // 
+            this.cmdInsert.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.cmdInsert.Location = new System.Drawing.Point(20, 21);
+            this.cmdInsert.Name = "cmdInsert";
+            this.cmdInsert.Size = new System.Drawing.Size(125, 40);
+            this.cmdInsert.TabIndex = 1;
+            this.cmdInsert.Text = "Inserisci dati";
+            this.cmdInsert.UseVisualStyleBackColor = false;
+            this.cmdInsert.Click += new System.EventHandler(this.cmdInsert_Click);
             // 
             // cmdExit
             // 
@@ -673,16 +747,6 @@
             this.cmdExit.Text = "Exit";
             this.cmdExit.UseVisualStyleBackColor = true;
             this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
-            // 
-            // cmdInsert
-            // 
-            this.cmdInsert.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.cmdInsert.Location = new System.Drawing.Point(20, 19);
-            this.cmdInsert.Name = "cmdInsert";
-            this.cmdInsert.Size = new System.Drawing.Size(87, 40);
-            this.cmdInsert.TabIndex = 1;
-            this.cmdInsert.Text = "Inserisci dati";
-            this.cmdInsert.UseVisualStyleBackColor = false;
             // 
             // frmCattolica
             // 
@@ -701,9 +765,10 @@
             this.Name = "frmCattolica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCattolica";
-            this.DragOver += new System.Windows.Forms.DragEventHandler(this.frmCattolica_DragOver);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -712,11 +777,11 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -786,5 +851,10 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button cmdExit;
         private System.Windows.Forms.Button cmdInsert;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button cmdClear;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label27;
     }
 }

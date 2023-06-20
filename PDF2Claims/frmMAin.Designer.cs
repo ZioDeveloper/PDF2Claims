@@ -33,6 +33,8 @@
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFile_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDati = new System.Windows.Forms.ToolStripMenuItem();
+            this.cattolicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdItas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUtilities = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDisposizioneFogli = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDispCascade = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,7 +42,6 @@
             this.mnuDispAffOrizz = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp_Info = new System.Windows.Forms.ToolStripMenuItem();
-            this.cattolicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,15 +73,32 @@
             this.mnuFile_Exit.Name = "mnuFile_Exit";
             this.mnuFile_Exit.Size = new System.Drawing.Size(93, 22);
             this.mnuFile_Exit.Text = "Exit";
+            this.mnuFile_Exit.Click += new System.EventHandler(this.mnuFile_Exit_Click);
             // 
             // mnuDati
             // 
             this.mnuDati.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cattolicaToolStripMenuItem});
+            this.cattolicaToolStripMenuItem,
+            this.cmdItas});
             this.mnuDati.Image = ((System.Drawing.Image)(resources.GetObject("mnuDati.Image")));
             this.mnuDati.Name = "mnuDati";
             this.mnuDati.Size = new System.Drawing.Size(129, 20);
             this.mnuDati.Text = "Importazione PDF";
+            // 
+            // cattolicaToolStripMenuItem
+            // 
+            this.cattolicaToolStripMenuItem.Name = "cattolicaToolStripMenuItem";
+            this.cattolicaToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.cattolicaToolStripMenuItem.Text = "Cattolica - Comp. CATTOLICA";
+            this.cattolicaToolStripMenuItem.Click += new System.EventHandler(this.cattolicaToolStripMenuItem_Click);
+            // 
+            // cmdItas
+            // 
+            this.cmdItas.Enabled = false;
+            this.cmdItas.Name = "cmdItas";
+            this.cmdItas.Size = new System.Drawing.Size(231, 22);
+            this.cmdItas.Text = "ITAS";
+            this.cmdItas.Click += new System.EventHandler(this.cmdItas_Click);
             // 
             // mnuUtilities
             // 
@@ -134,22 +152,17 @@
             this.mnuHelp_Info.Text = "Info";
             this.mnuHelp_Info.Click += new System.EventHandler(this.mnuHelp_Info_Click);
             // 
-            // cattolicaToolStripMenuItem
-            // 
-            this.cattolicaToolStripMenuItem.Name = "cattolicaToolStripMenuItem";
-            this.cattolicaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cattolicaToolStripMenuItem.Text = "Cattolica";
-            this.cattolicaToolStripMenuItem.Click += new System.EventHandler(this.cattolicaToolStripMenuItem_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1255, 716);
+            this.ClientSize = new System.Drawing.Size(1255, 911);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PDF -> Claims";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -171,6 +184,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuHelp_Info;
         private System.Windows.Forms.ToolStripMenuItem mnuUtilities;
         private System.Windows.Forms.ToolStripMenuItem cattolicaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmdItas;
     }
 }
 

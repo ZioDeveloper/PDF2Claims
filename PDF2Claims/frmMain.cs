@@ -46,5 +46,33 @@ namespace PDF2Claims
             myfrmCattolica.Show();
             myfrmCattolica.MdiParent = this;
         }
+
+        private void mnuFile_Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            foreach (Form childForm in this.MdiChildren)
+            {
+                childForm.Close();
+            }
+        }
+
+        private void cmdItas_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(frmItas))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+            frmItas myfrmItas = new frmItas();
+            myfrmItas.Show();
+            myfrmItas.MdiParent = this;
+        }
     }
 }

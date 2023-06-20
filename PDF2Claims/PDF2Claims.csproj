@@ -99,6 +99,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -132,6 +133,12 @@
     <Compile Include="frmCattolica.Designer.cs">
       <DependentUpon>frmCattolica.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmItas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmItas.Designer.cs">
+      <DependentUpon>frmItas.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +162,9 @@
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="frmCattolica.resx">
       <DependentUpon>frmCattolica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmItas.resx">
+      <DependentUpon>frmItas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
