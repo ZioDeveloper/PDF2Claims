@@ -18,6 +18,8 @@ using iText.Kernel.Pdf.Canvas.Parser.Filter;
 using iText.Kernel.Geom;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
+using System.IO;
+using System.IO.Compression;
 
 namespace PDF2Claims
 {
@@ -31,7 +33,8 @@ namespace PDF2Claims
         string DataIncarico = "";
         string DataChiusura = "";
         string DataPresa = "";
-
+        string myPathPDF = "";
+        string myFileNamePDF = "";
         string myGestione = "";
         string LastID = "";
         string aNewFolder = "";
@@ -39,6 +42,14 @@ namespace PDF2Claims
         {
             InitializeComponent();
             panel1.AllowDrop = true;
+            panel2.AllowDrop = true;
+
+            comboBox1.Items.Add("Rami elementari");
+            comboBox1.Items.Add("Trasporti");
+
+            // Imposta l'indice predefinito del ComboBox
+            comboBox1.SelectedIndex = 0;
+            panel2.Visible = true;
         }
 
         private void cmdOpenPDF_Click(object sender, EventArgs e)
@@ -168,13 +179,14 @@ namespace PDF2Claims
                 }
             }
 
-            pattern = @"Data evento:(.+)";
+            pattern = @"Data evento: (.+)";
             match = Regex.Match(input, pattern);
             if (match.Success)
             {
                 if (match.Success)
                 {
                     txtDataEvento.Text = match.Groups[1].Value;
+                    txtDataEvento.Text = txtDataEvento.Text.Trim();
                 }
             }
 
@@ -237,7 +249,17 @@ namespace PDF2Claims
                     txtGaranzieColpite.Text = match.Groups[1].Value;
                 }
             }
+            pattern = @"Danni a cose: (.+)";
+            match = Regex.Match(input, pattern);
+            if (match.Success)
+            {
+                if (match.Success)
+                {
+                    txtNoteSinistro.Text = match.Groups[1].Value;
+                }
+            }
 
+            
 
         }
 
@@ -369,6 +391,12 @@ namespace PDF2Claims
 
         private void cmdInsert_Click(object sender, EventArgs e)
         {
+            txtDataEvento.Text = txtDataEvento.Text.Trim();
+            if (txtDataEvento.Text.Length != 10)
+            {
+                MessageBox.Show("Data evento non completa !");
+                return;
+            }
             
             bool CanInsertStatus = false;
             int lastInsertedId = 0;
@@ -389,26 +417,26 @@ namespace PDF2Claims
 
                         string sqlstm = " INSERT INTO Pratiche(numeroSinistroCompagnia, numeroSinistroCompagnia_PROG, ID_ramo, ID_gestione,ID_gruppoAssicurativo , "
                                 + " ID_compagniaAssicurativa, insertUser, updUSer,dataAffidamentoIncarico, dataAccadimento, indirizzoAccadimento_indirizzoCompletoDaFlussoGenerali ,"
-                                + " descrizioneSinistro,ID_modalitaAssegnazione,importoStimato, numeroPolizza,contraente_cognome,contraente_ragioneSociale,contraente_codiceFiscale_partitaIva, "
+                                + " descrizioneSinistro,ID_modalitaAssegnazione, numeroPolizza,contraente_cognome,contraente_ragioneSociale,contraente_codiceFiscale_partitaIva, "
                                 + " contraente_indirizzoCompletoDaFlussoGenerali,beneficiario_cognome,beneficiario_indirizzoCompletoDaFlussoGenerali,noteSinistro) "
                                 + " OUTPUT INSERTED.ID VALUES(@numeroSinistroCompagnia,@numeroSinistroCompagnia_PROG, @ID_ramo, @ID_gestione, @ID_gruppoAssicurativo , "
                                 + " @ID_compagniaAssicurativa, @insertUser, @updUSer, @dataAffidamentoIncarico, @dataAccadimento, @indirizzoAccadimento_indirizzoCompletoDaFlussoGenerali, "
-                                + " @descrizioneSinistro, @ID_modalitaAssegnazione, @importoStimato, @numeroPolizza,@contraente_cognome,@contraente_ragioneSociale,@contraente_codiceFiscale_partitaIva, "
+                                + " @descrizioneSinistro, @ID_modalitaAssegnazione,  @numeroPolizza,@contraente_cognome,@contraente_ragioneSociale,@contraente_codiceFiscale_partitaIva, "
                                 + " @contraente_indirizzoCompletoDaFlussoGenerali,@beneficiario_cognome,@beneficiario_indirizzoCompletoDaFlussoGenerali,@noteSinistro) ";
 
                         cmd.CommandText = sqlstm;
                         cmd.Connection = conn;
-                        cmd.Parameters.AddWithValue("@numeroSinistroCompagnia", txtSinistro.Text); //txtSinistro.Text;
+                        cmd.Parameters.AddWithValue("@numeroSinistroCompagnia", "TEST_0000"); // txtSinistro.Text); //txtSinistro.Text;
                         cmd.Parameters.AddWithValue("@numeroSinistroCompagnia_PROG", 1);
-                        myIDRamo = FindIDRamo(txtRamo.Text.Left(2), myGestione);
+                        myIDRamo = FindIDRamo(txtRamo.Text.Left(1), myGestione);
                         if (myIDRamo == "")
                         {
-                            MessageBox.Show("Scelta Gestione non corretta !");
-                            return;
+                            //MessageBox.Show("Scelta Gestione non corretta !");
+                            //return;
                         }
-                        cmd.Parameters.AddWithValue("@ID_ramo", myIDRamo);
-                        cmd.Parameters.AddWithValue("@ID_gestione", 1);
-                        cmd.Parameters.AddWithValue("@ID_gruppoAssicurativo", 2);
+                        cmd.Parameters.AddWithValue("@ID_ramo", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@ID_gestione", myGestione);
+                        cmd.Parameters.AddWithValue("@ID_gruppoAssicurativo", 5);
 
                         // I sinistri che iniziano con 4 sono di TUA Assicurazioni (ID = 12)
                        
@@ -418,19 +446,20 @@ namespace PDF2Claims
                         cmd.Parameters.AddWithValue("@insertUser", "BOT");
                         cmd.Parameters.AddWithValue("@updUSer", "BOT");
 
-                        dateString = txtDataIncarico.Text;
+                        dateString = txtDataIncarico.Text.Replace(@"/","-").Trim();
+                        MessageBox.Show(dateString);
                         DateTime dtDataIncarico = DateTime.ParseExact(dateString, "dd-MM-yyyy", null);
                         string myDate = dtDataIncarico.Year.ToString("0000") + dtDataIncarico.Month.ToString("00") + dtDataIncarico.Day.ToString("00");
                         cmd.Parameters.AddWithValue("@dataAffidamentoIncarico", dtDataIncarico);
 
 
-                        dateString = txtDataEvento.Text;
+                        dateString = txtDataEvento.Text.Replace(@"/", "-").Trim();
                         DateTime dtDataAccadimento = DateTime.ParseExact(dateString, "dd-MM-yyyy", null);
                         myDate = dtDataAccadimento.Year.ToString("0000") + dtDataAccadimento.Month.ToString("00") + dtDataAccadimento.Day.ToString("00");
                         cmd.Parameters.AddWithValue("@dataAccadimento", dtDataAccadimento);
 
 
-                        cmd.Parameters.AddWithValue("@indirizzoAccadimento_indirizzoCompletoDaFlussoGenerali", txtLuogoAccadimento.Text);
+                        cmd.Parameters.AddWithValue("@indirizzoAccadimento_indirizzoCompletoDaFlussoGenerali", txtLocEvento.Text);
                         cmd.Parameters.AddWithValue("@descrizioneSinistro", txtDescrAccadimento.Text);
 
                         if (txtPL.Text.ToUpper() == "NO")
@@ -439,38 +468,35 @@ namespace PDF2Claims
                             cmd.Parameters.AddWithValue("@ID_modalitaAssegnazione", "1");
 
 
-                        string currencyValue = txtStima.Text;
-                        string converted = Regex.Replace(currencyValue, @"\D", "");
-                        //currencyValue.Replace("$","").Replace("€","").Replace(",","").Replace(".","");
-                        try
-                        {
-                            double Importo = double.Parse(converted);
-                            cmd.Parameters.AddWithValue("@importoStimato", Importo);
-                        }
-                        catch { cmd.Parameters.AddWithValue("@importoStimato", DBNull.Value); }
+                        //string currencyValue = txtStima.Text;
+                        //string converted = Regex.Replace(currencyValue, @"\D", "");
+                        ////currencyValue.Replace("$","").Replace("€","").Replace(",","").Replace(".","");
+                        //try
+                        //{
+                        //    double Importo = double.Parse(converted);
+                        //    cmd.Parameters.AddWithValue("@importoStimato", Importo);
+                        //}
+                        //catch { cmd.Parameters.AddWithValue("@importoStimato", DBNull.Value); }
 
                         cmd.Parameters.AddWithValue("@numeroPolizza", txtPolizza.Text);
 
 
                         // Verifico se CF o PIVA
-                        if (txtPIVA.Text.Length == 11)
-                        {
-                            cmd.Parameters.AddWithValue("@contraente_cognome", "");
-                            cmd.Parameters.AddWithValue("@contraente_ragioneSociale", txtContraente.Text);
-                            cmd.Parameters.AddWithValue("@contraente_codiceFiscale_partitaIva", txtPIVA.Text);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@contraente_cognome", txtContraente.Text);
-                            cmd.Parameters.AddWithValue("@contraente_ragioneSociale", "");
-                            cmd.Parameters.AddWithValue("@contraente_codiceFiscale_partitaIva", txtPIVA.Text);
-                        }
+                        
+                        
+                        cmd.Parameters.AddWithValue("@contraente_cognome", "");
+                        cmd.Parameters.AddWithValue("@contraente_ragioneSociale", txtDanneggiato.Text);
+                        cmd.Parameters.AddWithValue("@contraente_codiceFiscale_partitaIva", DBNull.Value);
+                        
+                       
+                           
+                        
 
 
-                        cmd.Parameters.AddWithValue("@contraente_indirizzoCompletoDaFlussoGenerali", txtContraenteInd.Text);
+                        cmd.Parameters.AddWithValue("@contraente_indirizzoCompletoDaFlussoGenerali", "");
                         cmd.Parameters.AddWithValue("@beneficiario_cognome", txtDanneggiato.Text);
-                        cmd.Parameters.AddWithValue("@beneficiario_indirizzoCompletoDaFlussoGenerali", txtDanneggiatoInd.Text);
-                        cmd.Parameters.AddWithValue("@noteSinistro", txtDanneggiatoInd.Text);
+                        cmd.Parameters.AddWithValue("@beneficiario_indirizzoCompletoDaFlussoGenerali", "");
+                        cmd.Parameters.AddWithValue("@noteSinistro", txtNoteSinistro.Text);
                         lastInsertedId = (int)cmd.ExecuteScalar();
                         CanInsertStatus = true;
                         panel2.Visible = true;
@@ -509,15 +535,17 @@ namespace PDF2Claims
                             cmd.Connection = conn;
                             int rowsAffected = cmd.ExecuteNonQuery();
                             MessageBox.Show("Pratica : " + lastInsertedId.ToString() + " inserita correttamente !");
+                            
                             SavePDF(lblPDF.Text);
 
-                            myPathPDF = @"\\gewisfsrv\disco_y\CLAIMSITC\1\2\9" + @"\";
+                            myPathPDF = @"\\gewisfsrv\disco_y\CLAIMSITC\" + myGestione + @"\5\17" + @"\";
                             myFileNamePDF = myPathPDF + lastInsertedId + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + "001" + "_" + "Denuncia" + "_" + "36";
                             myFileNamePDF += ".PDF";
 
                             File.Copy(lblPDF.Text, myFileNamePDF, true);
                             LastID = lastInsertedId.ToString();
                             SalvaFileDoc(LastID, "36", myFileNamePDF, "0");
+                            
                         }
                         catch (SqlException exc)
                         {
@@ -532,6 +560,47 @@ namespace PDF2Claims
 
         }
 
+        private static void SalvaFileDoc(string IDPratica, string IDTipoDoc, string path, string FileLen)
+        {
+            string csLocal = Utils.GetConnectionStringByName("CLAIMSITC");
+            csLocal += "User ID=" + Utils.AppUser + ";Password=" + Utils.AppPassword;
+            int ins = 0;
+            string SQL = "";
+            using (SqlConnection connLocal = new SqlConnection(csLocal))
+            {
+                connLocal.Open();
+                using (SqlCommand cmd = new SqlCommand(SQL, connLocal))
+                {
+                    try
+                    {
+                        SQL = " INSERT INTO dbo.documenti \n"
+                            + "           (ID_pratica \n"
+                            + "           ,ID_tipoDocumento \n"
+                            + "           ,percorsoFile \n"
+                            + "           ,fileSize \n"
+                            + "           ,insertUser \n"
+                            + "           ,dataScaricoITC, Is_DaRestituire) \n"
+                            + " VALUES( @ID_pratica, @ID_tipoDocumento, @percorsoFile,  @fileSize, @insertUser, @dataScaricoITC, @Is_DaRestituire)";
+
+                        cmd.CommandText = SQL;
+                        cmd.Parameters.AddWithNullableValue("ID_pratica", IDPratica);
+                        cmd.Parameters.AddWithNullableValue("ID_tipoDocumento", IDTipoDoc);
+                        cmd.Parameters.AddWithNullableValue("percorsoFile", path);
+                        cmd.Parameters.AddWithNullableValue("fileSize", FileLen);
+                        cmd.Parameters.AddWithNullableValue("insertUser", "bot");
+                        cmd.Parameters.AddWithNullableValue("dataScaricoITC", DateTime.Now);
+                        cmd.Parameters.AddWithNullableValue("Is_DaRestituire", 1);
+                        ins = cmd.ExecuteNonQuery();
+
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show(exc.Message);
+                    }
+                }
+            }
+        }
+
         private string FindIDRamo(string CodiceRamo, string ID_gestione)
         {
             string myID = "";
@@ -539,27 +608,145 @@ namespace PDF2Claims
             string cs = Utils.GetConnectionStringByName("CLAIMSITC");
             cs += "User ID=" + Utils.AppUser + ";Password=" + Utils.AppPassword;
 
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    try
-                    {
-                        cmd.Connection = conn;
-                        string SQL = " SELECT ID FROM  rami WHERE ID_gestione = @ID_gestione AND CodiceRamo = @CodiceRamo";
-                        cmd.Parameters.AddWithValue("@CodiceRamo", CodiceRamo);
-                        cmd.Parameters.AddWithValue("@ID_gestione", ID_gestione);
+            //if (CodiceRamo == "F" && ID_gestione == "1")
+            //    { myID = "19"; }
+            //else if (CodiceRamo == "F" && ID_gestione == "3")
+            //{// DA FARE}
+            //else if (CodiceRamo == "6" && ID_gestione == "1")
+            //    {// DA FARE}
 
-                        cmd.CommandText = SQL;
-                        myID = cmd.ExecuteScalar().ToString();
-                    }
-                    catch { }
+                    //using (SqlConnection conn = new SqlConnection(cs))
+                    //{
+                    //    conn.Open();
+                    //    using (SqlCommand cmd = new SqlCommand())
+                    //    {
+                    //        try
+                    //        {
+                    //            cmd.Connection = conn;
+                    //            string SQL = " SELECT ID FROM  rami WHERE ID_gestione = @ID_gestione AND CodiceRamo = @CodiceRamo";
+                    //            cmd.Parameters.AddWithValue("@CodiceRamo", CodiceRamo);
+                    //            cmd.Parameters.AddWithValue("@ID_gestione", ID_gestione);
 
-                }
+                    //            cmd.CommandText = SQL;
+                    //            myID = cmd.ExecuteScalar().ToString();
+                    //        }
+                    //        catch { }
+
+                    //    }
+                    //}
+
+                    return myID;
             }
 
-            return myID;
+        public void SavePDF(string aFile)
+        {
+            string directoryPath = @"\\gefilesrv01\Disco_R\ITAS\@TEMP\";
+
+            string myFileName = txtSinistro.Text.ToUpper() + " - " + txtPolizza.Text.ToUpper().Replace(".", "") + ".PDF";
+            string myFolderName = myFileName;
+
+            //Process process = Process.Start(aFile);
+            //if (process != null && !process.HasExited)
+            //{
+            //    process.CloseMainWindow();
+            //    process.WaitForExit(); // Aspetta che l'applicazione venga chiusa
+            //    process.Dispose();
+            //    //Console.WriteLine("File PDF chiuso correttamente.");
+            //}
+
+
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+
+            }
+
+            aNewFolder = directoryPath + txtSinistro.Text.ToUpper() + " - " + txtPolizza.Text.ToUpper().Replace(".", "");
+
+            if (!Directory.Exists(aNewFolder))
+            {
+                Directory.CreateDirectory(aNewFolder);
+
+            }
+
+            File.Copy(aFile, aNewFolder.TrimEnd() + @"\" + myFileName, true);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedText = comboBox1.SelectedItem.ToString();
+            //MessageBox.Show("Hai selezionato: " + selectedText);
+            comboBox1.BackColor = SystemColors.Window;
+
+            if (comboBox1.SelectedIndex == 0)
+                myGestione = "1";
+            else
+                myGestione = "3";
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.All;
+            }
+        }
+
+        private void panel2_DragDrop(object sender, DragEventArgs e)
+        {
+            int cnt = 0;
+
+            // Gestisci i file qui, ad esempio:
+            string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            //MessageBox.Show(fileList[0]);
+            foreach (var item in fileList)
+            {
+
+                string directoryPath = @"\\gefilesrv01\Disco_R\ITAS\@TEMP\Unzip";
+
+                string[] files = Directory.GetFiles(directoryPath);
+
+                foreach (string filePath in files)
+                {
+                    File.Delete(filePath);
+                }
+
+                ZipFile.ExtractToDirectory(item, directoryPath);
+                File.Copy(item, System.IO.Path.Combine(aNewFolder.TrimEnd(), System.IO.Path.GetFileName(item)), true);
+
+
+                files = Directory.GetFiles(directoryPath);
+
+                foreach (string filePath in files)
+                {
+                    // Esegui le operazioni desiderate su ogni file
+                    cnt++;
+                    //myPathPDF = @"\\gewisfsrv\disco_y\CLAIMSITC\1\2\9" + @"\";
+                    myPathPDF = @"\\gewisfsrv\disco_y\CLAIMSITC\" + myGestione + @"\5\17" + @"\";
+                    myFileNamePDF = myPathPDF + LastID + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + cnt.ToString("000") + "_" + "_Documenti_Del_Sinistro" + "_" + "16";
+                    myFileNamePDF += ".PDF";
+                    //MessageBox.Show(filePath);
+                    //MessageBox.Show(myFileNamePDF);
+                    File.Copy(filePath, myFileNamePDF, true);
+                    SalvaFileDoc(LastID, "16", myFileNamePDF, "0");
+
+                }
+
+
+                panel2.Visible = false;
+            }
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

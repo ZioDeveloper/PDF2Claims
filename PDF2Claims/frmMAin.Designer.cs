@@ -94,7 +94,6 @@
             // 
             // cmdItas
             // 
-            this.cmdItas.Enabled = false;
             this.cmdItas.Name = "cmdItas";
             this.cmdItas.Size = new System.Drawing.Size(231, 22);
             this.cmdItas.Text = "ITAS";

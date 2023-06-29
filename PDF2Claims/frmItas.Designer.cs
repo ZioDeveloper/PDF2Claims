@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItas));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmdClear = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -58,6 +59,12 @@
             this.txtCodiceIncarico = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtNoteSinistro = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtDescrAccadimento = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.txtDataInserimento = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtCompagnia = new System.Windows.Forms.TextBox();
@@ -84,6 +91,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.cmdInsert = new System.Windows.Forms.Button();
             this.cmdExit = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -91,10 +99,12 @@
             this.groupBox4.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.cmdClear);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.button1);
@@ -110,7 +120,7 @@
             // 
             // cmdClear
             // 
-            this.cmdClear.Location = new System.Drawing.Point(236, 17);
+            this.cmdClear.Location = new System.Drawing.Point(124, 46);
             this.cmdClear.Name = "cmdClear";
             this.cmdClear.Size = new System.Drawing.Size(75, 23);
             this.cmdClear.TabIndex = 21;
@@ -129,6 +139,7 @@
             this.panel1.TabIndex = 20;
             this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel1_DragDrop);
             this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel1_DragEnter);
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label18
             // 
@@ -371,6 +382,12 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtNoteSinistro);
+            this.groupBox3.Controls.Add(this.label22);
+            this.groupBox3.Controls.Add(this.txtDescrAccadimento);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.label26);
+            this.groupBox3.Controls.Add(this.comboBox1);
             this.groupBox3.Controls.Add(this.txtDataInserimento);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.txtCompagnia);
@@ -391,6 +408,58 @@
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Dati SINISTRO:";
+            // 
+            // txtNoteSinistro
+            // 
+            this.txtNoteSinistro.Location = new System.Drawing.Point(579, 116);
+            this.txtNoteSinistro.Multiline = true;
+            this.txtNoteSinistro.Name = "txtNoteSinistro";
+            this.txtNoteSinistro.Size = new System.Drawing.Size(269, 66);
+            this.txtNoteSinistro.TabIndex = 28;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(578, 100);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(30, 13);
+            this.label22.TabIndex = 27;
+            this.label22.Text = "Note";
+            // 
+            // txtDescrAccadimento
+            // 
+            this.txtDescrAccadimento.Location = new System.Drawing.Point(119, 162);
+            this.txtDescrAccadimento.Name = "txtDescrAccadimento";
+            this.txtDescrAccadimento.Size = new System.Drawing.Size(429, 20);
+            this.txtDescrAccadimento.TabIndex = 26;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(25, 165);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(65, 13);
+            this.label21.TabIndex = 25;
+            this.label21.Text = "Descrizione ";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(522, 16);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(49, 13);
+            this.label26.TabIndex = 24;
+            this.label26.Text = "Gestione";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(581, 13);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(226, 21);
+            this.comboBox1.TabIndex = 23;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // txtDataInserimento
             // 
@@ -439,6 +508,7 @@
             this.label14.Size = new System.Drawing.Size(80, 13);
             this.label14.TabIndex = 10;
             this.label14.Text = "Località evento";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // txtDataEvento
             // 
@@ -589,6 +659,8 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(491, 54);
             this.panel2.TabIndex = 21;
+            this.panel2.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel2_DragDrop);
+            this.panel2.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel2_DragEnter);
             // 
             // label27
             // 
@@ -603,9 +675,9 @@
             // cmdInsert
             // 
             this.cmdInsert.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.cmdInsert.Location = new System.Drawing.Point(58, 21);
+            this.cmdInsert.Location = new System.Drawing.Point(15, 21);
             this.cmdInsert.Name = "cmdInsert";
-            this.cmdInsert.Size = new System.Drawing.Size(87, 40);
+            this.cmdInsert.Size = new System.Drawing.Size(130, 40);
             this.cmdInsert.TabIndex = 1;
             this.cmdInsert.Text = "Inserisci dati";
             this.cmdInsert.UseVisualStyleBackColor = false;
@@ -621,10 +693,23 @@
             this.cmdExit.UseVisualStyleBackColor = true;
             this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(254, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(128, 58);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmItas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(919, 643);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox4);
@@ -646,6 +731,7 @@
             this.groupBox7.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -708,5 +794,12 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button cmdInsert;
         private System.Windows.Forms.Button cmdExit;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtDescrAccadimento;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtNoteSinistro;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

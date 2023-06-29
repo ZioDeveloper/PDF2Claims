@@ -62,6 +62,7 @@ namespace PDF2Claims
         string myGestione = "";
         string LastID = "";
         string aNewFolder = "";
+        string myIDRamo = "";
 
         #endregion
         public frmCattolica()
@@ -69,11 +70,7 @@ namespace PDF2Claims
             InitializeComponent();
             panel1.AllowDrop = true;
             panel2.AllowDrop = true;
-            //lblPDF.Text = @"C:\Test\C.PDF";
-            //myPDFText = ExtractTextFromDoc();
-            //richTextBox1.Text = myPDFText;
-            //Refresh();
-            //DecodePDF(myPDFText);
+            
             comboBox1.Items.Add("Rami elementari");
             comboBox1.Items.Add("Trasporti");
 
@@ -545,7 +542,7 @@ namespace PDF2Claims
             int lastInsertedId = 0;
 
             string dateString = "";
-            string myIDRamo = "";
+            
             string cs = Utils.GetConnectionStringByName("CLAIMSITC");
             cs += "User ID=" + Utils.AppUser + ";Password=" + Utils.AppPassword;
 
@@ -587,7 +584,7 @@ namespace PDF2Claims
                             return;
                         }
                         cmd.Parameters.AddWithValue("@ID_ramo", myIDRamo);
-                        cmd.Parameters.AddWithValue("@ID_gestione", 1);
+                        cmd.Parameters.AddWithValue("@ID_gestione", myGestione);
                         cmd.Parameters.AddWithValue("@ID_gruppoAssicurativo", 2);
 
                         // I sinistri che iniziano con 4 sono di TUA Assicurazioni (ID = 12)
@@ -672,6 +669,7 @@ namespace PDF2Claims
 
             if (CanInsertStatus)
             {
+                ;
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
                     conn.Open();
@@ -692,7 +690,11 @@ namespace PDF2Claims
                             MessageBox.Show("Pratica : " + lastInsertedId.ToString() +  " inserita correttamente !");
                             SavePDF(lblPDF.Text);
 
-                            myPathPDF = @"\\gewisfsrv\disco_y\CLAIMSITC\1\2\9"  + @"\";
+                            if (txtSinistro.Text.Left(1) != "4")
+                                myPathPDF = @"\\gewisfsrv\disco_y\CLAIMSITC\" + myGestione + @"\2\9" + @"\";
+                            else
+                                myPathPDF = @"\\gewisfsrv\disco_y\CLAIMSITC\" + myGestione + @"\2\12" + @"\";
+
                             myFileNamePDF = myPathPDF + lastInsertedId + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + "001" + "_" + "Denuncia" + "_" + "36";
                             myFileNamePDF += ".PDF";
 
@@ -853,7 +855,14 @@ namespace PDF2Claims
                 {
                     // Esegui le operazioni desiderate su ogni file
                     cnt++;
-                    myPathPDF = @"\\gewisfsrv\disco_y\CLAIMSITC\1\2\9" + @"\";
+
+                    if (txtSinistro.Text.Left(1) != "4")
+                        myPathPDF = @"\\gewisfsrv\disco_y\CLAIMSITC\" + myGestione + @"\2\9" + @"\";
+                    else
+                        myPathPDF = @"\\gewisfsrv\disco_y\CLAIMSITC\" + myGestione + @"\2\12" + @"\";
+
+
+                    //myPathPDF = @"\\gewisfsrv\disco_y\CLAIMSITC\1\2\9" + @"\";
                     myFileNamePDF = myPathPDF + LastID + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + cnt.ToString("000") + "_" +  "_Documenti_Del_Sinistro" + "_" + "16";
                     myFileNamePDF += ".PDF";
                     //MessageBox.Show(filePath);

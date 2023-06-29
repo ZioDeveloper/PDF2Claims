@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCattolica));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmdClear = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -96,6 +97,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.cmdInsert = new System.Windows.Forms.Button();
             this.cmdExit = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -105,10 +107,12 @@
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.cmdClear);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.button1);
@@ -124,7 +128,7 @@
             // 
             // cmdClear
             // 
-            this.cmdClear.Location = new System.Drawing.Point(236, 17);
+            this.cmdClear.Location = new System.Drawing.Point(124, 46);
             this.cmdClear.Name = "cmdClear";
             this.cmdClear.Size = new System.Drawing.Size(75, 23);
             this.cmdClear.TabIndex = 21;
@@ -748,6 +752,18 @@
             this.cmdExit.UseVisualStyleBackColor = true;
             this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(251, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(128, 58);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmCattolica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -782,6 +798,7 @@
             this.groupBox7.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -856,5 +873,6 @@
         private System.Windows.Forms.Button cmdClear;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
